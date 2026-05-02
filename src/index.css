@@ -11,24 +11,77 @@
 
 :root {
   font-family: var(--font-sans);
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1a1f2c;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  color-scheme: dark;
 }
 
 body {
-  @apply antialiased text-gray-900 bg-white overflow-x-hidden;
+  @apply antialiased overflow-x-hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+/* Global Dark Mode Overrides */
+.dark .bg-white { background-color: var(--bg-primary) !important; }
+.dark .bg-gray-50 { background-color: var(--bg-secondary) !important; }
+.dark .bg-gray-100 { background-color: var(--bg-secondary) !important; }
+.dark .bg-white\/80 { background-color: rgba(15, 23, 42, 0.8) !important; }
+
+.dark .text-gray-900, 
+.dark .text-gray-800, 
+.dark .text-[#1a1f2c], 
+.dark .text-gray-700 { color: var(--text-primary) !important; }
+
+.dark .text-gray-600, 
+.dark .text-gray-500, 
+.dark .text-gray-400 { color: var(--text-secondary) !important; }
+
+.dark .border-gray-100, 
+.dark .border-gray-50, 
+.dark .border-gray-200 { border-color: var(--border-color) !important; }
+
+.dark .shadow-sm, 
+.dark .shadow-md, 
+.dark .shadow-lg, 
+.dark .shadow-xl, 
+.dark .shadow-2xl { box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5) !important; }
 
 .glass {
   @apply bg-white/80 backdrop-blur-md border border-white/20;
 }
 
 @keyframes spin-slow {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 @keyframes reverse-spin-slow {
-  from { transform: translate(-50%, -50%) rotate(360deg); }
-  to { transform: translate(-50%, -50%) rotate(0deg); }
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }
 
 .animate-spin-slow {

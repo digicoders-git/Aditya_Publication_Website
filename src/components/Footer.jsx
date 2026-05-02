@@ -47,11 +47,11 @@ const Footer = () => {
         </div>
 
         <div>
-          <h4 className="text-xl font-bold mb-8 font-serif">Our Support</h4>
+          <h4 className="text-lg font-bold mb-5 font-serif">Our Support</h4>
           <ul className="space-y-4 text-gray-400 text-sm">
             <li><Link to="/download-app" className="hover:text-brand transition-colors">Help Center</Link></li>
             <li><Link to="/terms-conditions" className="hover:text-brand transition-colors">Terms & Conditions</Link></li>
-            <li><Link to="/privacy-policies" className="hover:text-brand transition-colors">Privacy Policy</Link></li>
+            <li><Link to="/privacy-policies" className="hover:text-brand transition-colors">Privacy Policies</Link></li>
             <li><Link to="/contact-us" className="hover:text-brand transition-colors">FAQ</Link></li>
           </ul>
         </div>
@@ -74,8 +74,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-8 flex flex-col items-center gap-3 text-center md:flex-row md:justify-between md:text-left">
         <p className="text-gray-500 text-sm">© 2026 Aditya Publisher. All Rights Reserved.</p>
+        <p className="text-gray-500 text-sm">Crafted By <a href="https://digicoders.in/" target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">DigiCoders</a></p>
         <div className="flex items-center gap-8 text-gray-500 text-sm">
           <Link to="/privacy-policies" className="hover:text-brand">Privacy Policy</Link>
           <Link to="/terms-conditions" className="hover:text-brand">Terms & Conditions</Link>

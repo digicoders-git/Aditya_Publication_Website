@@ -7,40 +7,40 @@ const Download = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="pt-32 pb-24"
+      className="pt-20 pb-16"
     >
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
         >
           <span className="text-brand font-black uppercase tracking-[0.4em] text-sm mb-4 block">Mobile Experience</span>
-          <h1 className="text-6xl font-bold text-gray-900 font-serif mb-8 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 font-serif mb-6 leading-tight">
             Read Anywhere, <br /> <span className="text-brand">Anytime.</span>
           </h1>
-          <p className="text-gray-500 text-lg leading-relaxed mb-12">
+          <p className="text-gray-500 text-base leading-relaxed mb-8">
             Download the Aditya Publisher app to access thousands of titles on the go. 
             Sync your library across all your devices and enjoy an immersive reading experience with our custom e-reader.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 mb-16">
-            <button className="bg-gray-900 text-white px-10 py-5 rounded-[2rem] flex items-center gap-4 hover:bg-gray-800 transition-all shadow-2xl">
-              <Apple size={32} />
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <button className="bg-gray-900 text-white px-7 py-4 rounded-2xl flex items-center gap-3 hover:bg-gray-800 transition-all shadow-xl">
+              <Apple size={24} />
               <div className="text-left">
                 <p className="text-[10px] uppercase font-bold opacity-60">Download on the</p>
-                <p className="text-xl font-bold">App Store</p>
+                <p className="text-base font-bold">App Store</p>
               </div>
             </button>
-            <button className="bg-white text-gray-900 border-2 border-gray-100 px-10 py-5 rounded-[2rem] flex items-center gap-4 hover:bg-gray-50 transition-all shadow-xl">
-              <Play size={32} className="fill-gray-900" />
+            <button className="bg-white text-gray-900 border-2 border-gray-100 px-7 py-4 rounded-2xl flex items-center gap-3 hover:bg-gray-50 transition-all shadow-lg">
+              <Play size={24} className="fill-gray-900" />
               <div className="text-left">
                 <p className="text-[10px] uppercase font-bold opacity-60">Get it on</p>
-                <p className="text-xl font-bold">Google Play</p>
+                <p className="text-base font-bold">Google Play</p>
               </div>
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 pt-12 border-t border-gray-100">
+          <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center text-brand">
                 <Smartphone size={24} />

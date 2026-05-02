@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FixedSidebar from './components/FixedSidebar';
 
 // Pages
 import Home from './pages/Home';
@@ -43,6 +44,7 @@ const App = () => {
         {!isLoading && (
           <>
             <Navbar />
+            <FixedSidebar />
             <main>
               <Routes>
                 <Route path="/" element={<Home />} />

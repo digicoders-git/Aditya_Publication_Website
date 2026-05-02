@@ -5,10 +5,10 @@ const LegalLayout = ({ title, children }) => (
   <motion.div 
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    className="pt-32 pb-24"
+    className="pt-16 pb-16"
   >
     <div className="max-w-4xl mx-auto px-4">
-      <h1 className="text-5xl font-bold text-gray-900 font-serif mb-12 text-center">{title}</h1>
+      <h1 className="text-3xl md:text-5xl font-bold text-gray-900 font-serif mb-8 text-center">{title}</h1>
       <div className="prose prose-lg max-w-none text-gray-600 space-y-8 leading-relaxed">
         {children}
       </div>
