@@ -50,12 +50,12 @@ const Books = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white">
 
       {/* Hero Banner */}
-      <section className="relative h-[280px] bg-[#2a2d6e] flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative h-[200px] md:h-[280px] bg-[#2a2d6e] flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1500&auto=format&fit=crop" alt="" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#2a2d6e] via-[#2a2d6e]/80 to-[#2a2d6e]" />
         </div>
-        <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="text-4xl font-bold text-white mb-4 relative z-10 font-serif">
+        <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="text-2xl md:text-4xl font-bold text-white mb-4 relative z-10 font-serif">
           Books & Publication List
         </motion.h1>
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="bg-brand px-8 py-2.5 rounded-xl flex items-center gap-2 text-white font-bold text-sm uppercase tracking-widest shadow-xl relative z-10">
