@@ -93,12 +93,12 @@ const Hero = () => {
           </motion.div>
 
           {/* Right Content: Images & Badges */}
-          <div className="relative flex justify-center items-center h-[340px] sm:h-[420px] lg:h-[600px] lg:-ml-80">
+          <div className="relative flex justify-center items-center h-[340px] sm:h-[450px] lg:h-[600px] lg:-ml-40 xl:-ml-60 mt-12 lg:mt-0">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1 }}
-              className="relative w-full max-w-xs sm:max-w-md lg:max-w-2xl group"
+              className="relative w-full max-w-[280px] sm:max-w-md lg:max-w-2xl group"
             >
               <img 
                 src={heroBanner} 

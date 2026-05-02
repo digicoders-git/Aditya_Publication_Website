@@ -24,7 +24,7 @@ const FixedSidebar = () => {
 
   return (
     <>
-      <div className="hidden sm:flex fixed left-0 top-1/2 -translate-y-1/2 z-[100] flex-col gap-3">
+      <div className="fixed left-0 bottom-0 -translate-y-1/2 z-[100] flex flex-col gap-2 md:gap-3">
         {menuItems.map((item) => (
           <motion.button
             key={item.id}
@@ -50,7 +50,7 @@ const FixedSidebar = () => {
             <motion.div
               initial={{ x: -380, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -380, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed left-0 top-0 bottom-0 w-[340px] bg-white z-[120] shadow-2xl p-8 flex flex-col"
+              className="fixed left-0 top-0 bottom-0 w-full sm:w-[340px] bg-white z-[120] shadow-2xl p-6 sm:p-8 flex flex-col"
             >
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 font-serif capitalize">
