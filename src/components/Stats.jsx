@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const Stats = () => {
   const stats = [
     { icon: <Users size={40} />, count: "125,663", label: "Happy Customers" },
-    { icon: <BookOpen size={40} />, count: "50,672", label: "Book Collections" },
+    { icon: <BookOpen size={40} />, count: "50,672", label: "Book & Publication Collections" },
     { icon: <Store size={40} />, count: "1,562", label: "Our Stores" },
     { icon: <PenTool size={40} />, count: "457", label: "Famous Writers" }
   ];

@@ -10,7 +10,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about-us" },
-    { name: "Books", path: "/books-publication-list" },
+    { name: "Books & Publication", path: "/books-publication-list" },
     { name: "Contact Us", path: "/contact-us" },
     { name: "Download App", path: "/download-app" },
   ];
@@ -27,7 +27,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-lg md:text-xl font-bold text-gray-900 leading-none">Aditya</span>
-              <span className="text-xs md:text-sm font-medium text-brand tracking-wider uppercase">Publisher</span>
+              <span className="text-xs md:text-sm font-medium text-brand tracking-wider uppercase">Publication</span>
             </div>
           </Link>
 

@@ -124,7 +124,7 @@ const Home = () => {
               <p className="text-gray-400 text-sm mt-1">Bestsellers, new arrivals aur award-winning titles</p>
             </div>
             <Link to="/books-publication-list" className="hidden md:flex items-center gap-2 text-brand font-bold text-sm hover:gap-3 transition-all">
-              View All Books <ChevronRight size={16} />
+              View All Books & Publications <ChevronRight size={16} />
             </Link>
           </motion.div>
 
@@ -156,7 +156,7 @@ const Home = () => {
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mt-8">
             <Link to="/books-publication-list" className="inline-flex items-center gap-2 bg-brand text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-brand/30 hover:bg-brand-dark transition-all text-sm">
-              Browse All 50,000+ Books <ChevronRight size={16} />
+              Browse All 50,000+ Books & Publications <ChevronRight size={16} />
             </Link>
           </motion.div>
         </div>

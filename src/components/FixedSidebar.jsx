@@ -109,7 +109,7 @@ const FixedSidebar = () => {
                     <div className="space-y-2">
                       {[
                         { label: 'Home', path: '/' },
-                        { label: 'Books', path: '/books-publication-list' },
+                        { label: 'Books & Publication', path: '/books-publication-list' },
                         { label: 'About Us', path: '/about-us' },
                         { label: 'Contact', path: '/contact-us' },
                       ].map((link) => (
