@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import Stats from '../components/Stats';
 
 const testimonials = [
-  { name: "Miranda Lee", role: "Writer", rating: 5, text: "Aditya Publisher ne meri reading journey ko bilkul badal diya. Yahan ki collection aur service dono lajawaab hain. Har baar naye titles milte hain jo sach mein kaam ke hote hain." },
+  { name: "Miranda Lee", role: "Writer", rating: 5, text: "Aditya Publication ne meri reading journey ko bilkul badal diya. Yahan ki collection aur service dono lajawaab hain. Har baar naye titles milte hain jo sach mein kaam ke hote hain." },
   { name: "Steve Henry", role: "Book Lover", rating: 5, text: "Maine kai bookstores try kiye hain lekin yahan ki quality aur variety ka koi muqabla nahi. Delivery bhi fast hai aur packaging bhi bahut achhi hoti hai." },
-  { name: "Jason Huang", role: "Author", rating: 4, text: "Ek author ke taur pe main chahta hoon ki readers ko best books mile — Aditya Publisher exactly yahi karta hai. Highly recommended for all book lovers." },
+  { name: "Jason Huang", role: "Author", rating: 4, text: "Ek author ke taur pe main chahta hoon ki readers ko best books mile — Aditya Publication exactly yahi karta hai. Highly recommended for all book lovers." },
   { name: "Priya Sharma", role: "Student", rating: 5, text: "Competitive exams ki preparation ke liye yahan se books lena best decision tha. Prices bhi reasonable hain aur collection bhi bahut wide hai." },
   { name: "Rahul Verma", role: "Teacher", rating: 5, text: "Main apne students ko hamesha yahan se books recommend karta hoon. Quality aur authenticity mein koi compromise nahi. Bahut achha experience raha." },
 ];
@@ -83,10 +83,10 @@ const About = () => {
             <div className="h-[2px] w-10 bg-brand lg:hidden" />
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-[#1a1f2c] font-serif leading-tight">
-            Aditya Publisher — Best Choice For Learners
+            Aditya Publication — Best Choice For Learners
           </h2>
           <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-            1974 se lekar aaj tak, Aditya Publisher ne lakho readers ki zindagi mein kitabon ka rang bhara hai. Hamare paas 50,000 se zyada titles hain — fiction se lekar academic tak, children books se lekar research publications tak. Hum sirf books nahi bechte, hum ek reading culture banate hain.
+            1974 se lekar aaj tak, Aditya Publication ne lakho readers ki zindagi mein kitabon ka rang bhara hai. Hamare paas 50,000 se zyada titles hain — fiction se lekar academic tak, children books se lekar research publications tak. Hum sirf books nahi bechte, hum ek reading culture banate hain.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
             {["Comics & Graphics", "Biography", "Literary Collections", "Children Fiction", "Academic Books", "Research Papers"].map((item, i) => (
@@ -111,7 +111,7 @@ const About = () => {
               <span className="text-brand font-bold uppercase tracking-[0.2em] text-xs">Why Us</span>
               <div className="h-[2px] w-10 bg-brand" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1f2c] font-serif">Why Choose Aditya Publisher</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1f2c] font-serif">Why Choose Aditya Publication</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
@@ -278,7 +278,7 @@ const About = () => {
               <div className="h-[2px] w-10 bg-brand" />
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-[#1a1f2c] font-serif">50 Saal Ki Kahani</h2>
-            <p className="text-gray-400 text-sm md:text-base mt-2 max-w-xl mx-auto">1974 se aaj tak — ek chhoti si dukaan se India ke sabse trusted publisher tak ka safar.</p>
+            <p className="text-gray-400 text-sm md:text-base mt-2 max-w-xl mx-auto">1974 se aaj tak — ek chhoti si dukaan se India ke sabse trusted Publication tak ka safar.</p>
           </div>
           <div className="relative">
             <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-brand/10" />
@@ -288,8 +288,8 @@ const About = () => {
                 { year: "1985", title: "First Publication", desc: "Pehli baar khud ki publishing shuru ki. 'Bharat Ki Kahaniyan' series launch ki jo bestseller ban gayi aur 1 lakh copies biki.", side: "right" },
                 { year: "1995", title: "National Expansion", desc: "Mumbai, Kolkata aur Chennai mein branches khuli. Pan-India distribution network establish hua aur 10,000+ titles ho gaye.", side: "left" },
                 { year: "2005", title: "Digital Revolution", desc: "Online platform launch kiya. E-books aur audiobooks ki range add ki. Digital India ke saath kadam milaya.", side: "right" },
-                { year: "2015", title: "Award & Recognition", desc: "Government of India se 'Best Publisher Award' mila. 50,000+ titles aur 7 cities mein physical presence.", side: "left" },
-                { year: "2024", title: "50 Years of Excellence", desc: "50 saal poore kiye! 1 lakh+ satisfied customers, 50,000+ titles, aur India ke top 3 publishers mein shamil.", side: "right" },
+                { year: "2015", title: "Award & Recognition", desc: "Government of India se 'Best Publication Award' mila. 50,000+ titles aur 7 cities mein physical presence.", side: "left" },
+                { year: "2024", title: "50 Years of Excellence", desc: "50 saal poore kiye! 1 lakh+ satisfied customers, 50,000+ titles, aur India ke top 3 Publications mein shamil.", side: "right" },
               ].map((item, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className={`flex flex-col md:flex-row items-start md:items-center gap-8 ${item.side === 'right' ? 'md:flex-row-reverse' : ''}`}>
@@ -359,8 +359,8 @@ const About = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { icon: <Award size={32} />, title: "Best Publisher Award", year: "2015", org: "Government of India", desc: "National level pe best publisher ka prestigious award mila." },
-              { icon: <TrendingUp size={32} />, title: "Top 3 Publisher", year: "2020", org: "India Book Industry", desc: "India ke top 3 publishers mein shamil — sales aur quality dono mein." },
+              { icon: <Award size={32} />, title: "Best Publication Award", year: "2015", org: "Government of India", desc: "National level pe best Publication ka prestigious award mila." },
+              { icon: <TrendingUp size={32} />, title: "Top 3 Publication", year: "2020", org: "India Book Industry", desc: "India ke top 3 Publications mein shamil — sales aur quality dono mein." },
               { icon: <Users size={32} />, title: "1 Lakh+ Readers", year: "2022", org: "Community Milestone", desc: "1 lakh se zyada registered readers ka trusted community." },
               { icon: <Globe size={32} />, title: "International Reach", year: "2023", org: "Global Expansion", desc: "UAE, UK aur USA mein Indian diaspora ke liye books export shuru." },
             ].map((item, i) => (
@@ -425,7 +425,7 @@ const About = () => {
             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" alt="Aditya Sharma" className="w-20 h-20 rounded-3xl border-4 border-white/20 object-cover shadow-2xl" />
             <div className="text-center md:text-left">
               <p className="text-white font-black text-xl">Aditya Sharma</p>
-              <p className="text-white/70 text-sm font-bold uppercase tracking-widest">Founder & CEO, Aditya Publisher</p>
+              <p className="text-white/70 text-sm font-bold uppercase tracking-widest">Founder & CEO, Aditya Publication</p>
             </div>
           </div>
         </div>

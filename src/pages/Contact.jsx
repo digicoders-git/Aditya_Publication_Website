@@ -44,7 +44,7 @@ const Contact = () => {
       <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-6 md:-mt-14 relative z-20 mb-4">
         {[
           { icon: <Phone size={26} />, title: "Phone Number", detail1: "+91 98765 43210", detail2: "+91 87654 32109" },
-          { icon: <Mail size={26} />, title: "Email Address", detail1: "hello@adityapublisher.com", detail2: "support@adityapublisher.com", highlight: true },
+          { icon: <Mail size={26} />, title: "Email Address", detail1: "hello@adityaPublication.com", detail2: "support@adityaPublication.com", highlight: true },
           { icon: <MapPin size={26} />, title: "Office Location", detail1: "Sector 15, Rohini", detail2: "New Delhi, India - 110085" },
         ].map((card, i) => (
           <motion.div key={i} whileHover={{ y: -6 }}

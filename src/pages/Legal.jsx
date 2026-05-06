@@ -74,28 +74,28 @@ export const Terms = () => (
       <section className="space-y-4">
         <h3 className="text-2xl font-bold font-serif">1. Acceptance of Terms</h3>
         <p className="text-lg">
-          By accessing and using <span className="text-brand font-bold">Aditya Publisher</span>, you agree to comply with and be bound by these Terms and Conditions. Our services are intended for readers and researchers looking for authentic literature and academic resources. If you do not agree to these terms, please refrain from using our website.
+          By accessing and using <span className="text-brand font-bold">Aditya Publication</span>, you agree to comply with and be bound by these Terms and Conditions. Our services are intended for readers and researchers looking for authentic literature and academic resources. If you do not agree to these terms, please refrain from using our website.
         </p>
       </section>
 
       <section className="space-y-4">
         <h3 className="text-2xl font-bold font-serif">2. Intellectual Property Rights</h3>
         <p className="text-lg">
-          All content included on this site, such as text, graphics, logos, images, digital downloads, and software, is the property of Aditya Publisher or its content suppliers. The compilation of all content on this site is the exclusive property of Aditya Publisher and is protected by international copyright laws.
+          All content included on this site, such as text, graphics, logos, images, digital downloads, and software, is the property of Aditya Publication or its content suppliers. The compilation of all content on this site is the exclusive property of Aditya Publication and is protected by international copyright laws.
         </p>
       </section>
 
       <section className="space-y-4">
         <h3 className="text-2xl font-bold font-serif">3. User Responsibility & Account</h3>
         <p className="text-lg">
-          If you use this site, you are responsible for maintaining the confidentiality of your account and password. You agree to accept responsibility for all activities that occur under your account or password. Aditya Publisher reserves the right to refuse service, terminate accounts, or cancel orders at its sole discretion.
+          If you use this site, you are responsible for maintaining the confidentiality of your account and password. You agree to accept responsibility for all activities that occur under your account or password. Aditya Publication reserves the right to refuse service, terminate accounts, or cancel orders at its sole discretion.
         </p>
       </section>
 
       <section className="space-y-4">
         <h3 className="text-2xl font-bold font-serif">4. Product Descriptions & Pricing</h3>
         <p className="text-lg">
-          Aditya Publisher attempts to be as accurate as possible. However, we do not warrant that product descriptions or other content of this site is accurate, complete, reliable, current, or error-free. Prices for our products are subject to change without notice.
+          Aditya Publication attempts to be as accurate as possible. However, we do not warrant that product descriptions or other content of this site is accurate, complete, reliable, current, or error-free. Prices for our products are subject to change without notice.
         </p>
       </section>
 

@@ -192,9 +192,9 @@ const Books = () => {
           </div>
         )}
 
-        {/* Featured Publishers */}
+        {/* Featured Publications */}
         <div className="mt-10 bg-[#f8f9ff] rounded-2xl p-5 md:p-8">
-          <h2 className="text-lg md:text-2xl font-bold text-[#1a1f2c] font-serif mb-1">Featured Publishers</h2>
+          <h2 className="text-lg md:text-2xl font-bold text-[#1a1f2c] font-serif mb-1">Featured Publications</h2>
           <p className="text-gray-400 text-xs md:text-sm mb-4">Hamare trusted publishing partners se best titles</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[

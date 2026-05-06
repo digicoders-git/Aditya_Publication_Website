@@ -144,14 +144,14 @@ const FixedSidebar = () => {
                       </div>
                     </a>
 
-                    <a href="mailto:hello@adityapublisher.com"
+                    <a href="mailto:hello@adityaPublication.com"
                       className="flex items-center gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-brand/5 group transition-all">
                       <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-all shrink-0">
                         <Mail size={20} />
                       </div>
                       <div>
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Us</p>
-                        <p className="font-bold text-gray-900 text-sm">hello@adityapublisher.com</p>
+                        <p className="font-bold text-gray-900 text-sm">hello@adityaPublication.com</p>
                         <p className="text-gray-400 text-xs">Reply within 24 hours</p>
                       </div>
                     </a>

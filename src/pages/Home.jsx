@@ -53,8 +53,8 @@ const Home = () => {
           {/* Text */}
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{ delay: 0.2 }} className="flex flex-col gap-5 mt-8 lg:mt-0">
             <SectionLabel text="Who We Are" />
-            <h2 className="text-4xl font-bold text-[#1a1f2c] font-serif leading-tight">Aditya Publisher — Best Choice For Learners</h2>
-            <p className="text-gray-500 text-sm leading-relaxed">1974 se lekar aaj tak, Aditya Publisher ne lakho readers ki zindagi mein kitabon ka rang bhara hai. Hamare paas 50,000 se zyada titles hain — fiction se lekar academic tak.</p>
+            <h2 className="text-4xl font-bold text-[#1a1f2c] font-serif leading-tight">Aditya Publication — Best Choice For Learners</h2>
+            <p className="text-gray-500 text-sm leading-relaxed">1974 se lekar aaj tak, Aditya Publication ne lakho readers ki zindagi mein kitabon ka rang bhara hai. Hamare paas 50,000 se zyada titles hain — fiction se lekar academic tak.</p>
             <div className="grid grid-cols-2 gap-3">
               {["Comics & Graphics", "Biography", "Literary Collections", "Children Fiction", "Academic Books", "Research Papers"].map((item, i) => (
                 <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-center gap-2">
@@ -90,7 +90,7 @@ const Home = () => {
               <span className="text-brand font-bold uppercase tracking-[0.2em] text-xs">Why Us</span>
               <div className="h-[2px] w-10 bg-brand" />
             </div>
-            <h2 className="text-3xl font-bold text-[#1a1f2c] font-serif">Why Choose Aditya Publisher</h2>
+            <h2 className="text-3xl font-bold text-[#1a1f2c] font-serif">Why Choose Aditya Publication</h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
@@ -172,7 +172,7 @@ const Home = () => {
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <SectionLabel text="Mobile App" />
             <h2 className="text-4xl font-bold text-white font-serif leading-tight mb-4">Read Anywhere,<br /><span className="text-brand">Anytime.</span></h2>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-md">Download the Aditya Publisher app to access thousands of titles on the go. Sync your library across all devices.</p>
+            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-md">Download the Aditya Publication app to access thousands of titles on the go. Sync your library across all devices.</p>
             <div className="flex flex-wrap gap-4 mb-8">
               <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} className="bg-white text-gray-900 px-6 py-3 rounded-xl flex items-center gap-3 font-bold text-sm shadow-xl hover:shadow-2xl transition-all">
                 <Smartphone size={20} className="text-brand" />
@@ -214,7 +214,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {[
               { icon: <Phone size={28} />, title: "Call Us", detail: "+91 98765 43210", sub: "Mon–Sat, 9AM–6PM" },
-              { icon: <Mail size={28} />, title: "Email Us", detail: "hello@adityapublisher.com", sub: "Reply within 24 hours", highlight: true },
+              { icon: <Mail size={28} />, title: "Email Us", detail: "hello@adityaPublication.com", sub: "Reply within 24 hours", highlight: true },
               { icon: <MapPin size={28} />, title: "Visit Us", detail: "Sector 15, Rohini", sub: "New Delhi – 110085" },
             ].map((card, i) => (
               <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} whileHover={{ y: -6 }}

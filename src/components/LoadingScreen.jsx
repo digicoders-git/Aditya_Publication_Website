@@ -45,7 +45,7 @@ const LoadingScreen = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-3xl font-bold tracking-tight text-gray-900 font-serif"
         >
-          Aditya <span className="text-brand">Publisher</span>
+          Aditya <span className="text-brand">Publication</span>
         </motion.h1>
         
         <div className="mt-8 w-48 h-1 bg-gray-100 rounded-full overflow-hidden">

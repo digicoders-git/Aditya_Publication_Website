@@ -19,7 +19,7 @@ const Download = () => {
             Read Anywhere, <br /> <span className="text-brand">Anytime.</span>
           </h1>
           <p className="text-gray-500 text-base leading-relaxed mb-8">
-            Download the Aditya Publisher app to access thousands of titles on the go. 
+            Download the Aditya Publication app to access thousands of titles on the go. 
             Sync your library across all your devices and enjoy an immersive reading experience with our custom e-reader.
           </p>
 
