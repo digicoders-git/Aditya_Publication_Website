@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import SpecialOffers from '../components/SpecialOffers';
@@ -8,6 +8,22 @@ import LatestNews from '../components/LatestNews';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight, BookOpen, Award, Users, Globe, Smartphone, Mail, Phone, MapPin, Star, CheckCircle2, Zap, Heart, Truck } from 'lucide-react';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+const getImageUrl = (img) => {
+  if (!img) return 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop';
+  if (img.startsWith('http')) return img;
+  return `${API_BASE_URL}/${img}`;
+};
+
+const staticTopBooks = [
+  { title: "Seconds [PART 1]", author: "Janet Scott", price: 1699, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.5, img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop" },
+  { title: "Beyond The Horizon", author: "Elena Rodriguez", price: 4199, badge: "Top Rated", badgeColor: "bg-purple-500", rating: 4.8, img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&auto=format&fit=crop" },
+  { title: "REWORK", author: "Jason Fried", price: 2899, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.9, img: "https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=400&auto=format&fit=crop" },
+  { title: "Dark Whispers", author: "Arjun Kapoor", price: 1899, badge: "Trending", badgeColor: "bg-rose-500", rating: 4.4, img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400&auto=format&fit=crop" },
+  { title: "Quantitative Aptitude", author: "R.S. Aggarwal", price: 3499, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.8, img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=400&auto=format&fit=crop" },
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -22,6 +38,33 @@ const SectionLabel = ({ text }) => (
 );
 
 const Home = () => {
+  const [topBooks, setTopBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchTopBooks = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/books`);
+        const data = await res.json();
+        if (data.success && data.books && data.books.length > 0) {
+          const mapped = data.books.slice(0, 5).map(b => ({
+            title: b.title,
+            author: b.author,
+            price: b.price,
+            badge: b.badge || "Trending",
+            badgeColor: b.badge === "Bestseller" ? "bg-amber-500" : b.badge === "New" ? "bg-green-500" : b.badge === "Top Rated" ? "bg-purple-500" : "bg-rose-500",
+            rating: 4.7,
+            img: getImageUrl(b.image)
+          }));
+          setTopBooks(mapped);
+        } else {
+          setTopBooks(staticTopBooks);
+        }
+      } catch (err) {
+        setTopBooks(staticTopBooks);
+      }
+    };
+    fetchTopBooks();
+  }, []);
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Hero />
@@ -129,13 +172,7 @@ const Home = () => {
           </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-            {[
-              { title: "Seconds [PART 1]", author: "Janet Scott", price: 1699, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.5, img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop" },
-              { title: "Beyond The Horizon", author: "Elena Rodriguez", price: 4199, badge: "Top Rated", badgeColor: "bg-purple-500", rating: 4.8, img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&auto=format&fit=crop" },
-              { title: "REWORK", author: "Jason Fried", price: 2899, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.9, img: "https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=400&auto=format&fit=crop" },
-              { title: "Dark Whispers", author: "Arjun Kapoor", price: 1899, badge: "Trending", badgeColor: "bg-rose-500", rating: 4.4, img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400&auto=format&fit=crop" },
-              { title: "Quantitative Aptitude", author: "R.S. Aggarwal", price: 3499, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.8, img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=400&auto=format&fit=crop" },
-            ].map((book, i) => (
+            {topBooks.map((book, i) => (
               <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} whileHover={{ y: -6 }}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-gray-100 cursor-pointer">
                 <div className="relative h-52 overflow-hidden">

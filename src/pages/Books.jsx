@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, BookOpen, Star, TrendingUp, Award, ChevronRight, BookMarked, Zap, Globe, Compass, GraduationCap, X, Tag, SlidersHorizontal } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const categories = ["All", "Biography", "Horror", "Thriller", "Adventure", "Sci-Fi", "Business", "Academic"];
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
-const books = [
+const getImageUrl = (img) => {
+  if (!img) return 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop';
+  if (img.startsWith('http')) return img;
+  return `${API_BASE_URL}/${img}`;
+};
+
+const STATIC_CATEGORIES = ["All", "Biography", "Horror", "Thriller", "Adventure", "Sci-Fi", "Business", "Academic"];
+
+const staticBooks = [
   { id: 1,  title: "Seconds [PART 1]",     author: "Janet Scott",     category: "Biography", price: 1699, oldPrice: 2499, rating: 4.5, reviews: 128, badge: "Bestseller", desc: "Ek aisi kahani jo aapko sochne pe majboor kar degi. Janet Scott ki yeh biography ek insaan ki zindagi ke ansuney pehluon ko saamne laati hai.", pages: 320, lang: "English", image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=600&auto=format&fit=crop" },
   { id: 2,  title: "The Silent Forest",    author: "Marcus Thorne",   category: "Adventure", price: 2099, oldPrice: 2999, rating: 4.2, reviews: 94,  badge: "New",        desc: "Ek jungle mein chupi rahasymay duniya ki khoj. Marcus Thorne ka yeh adventure novel aapko apni seat se uthne nahi dega.", pages: 280, lang: "English", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=600&auto=format&fit=crop" },
   { id: 3,  title: "Beyond The Horizon",   author: "Elena Rodriguez", category: "Sci-Fi",    price: 4199, oldPrice: null, rating: 4.8, reviews: 210, badge: "Top Rated",  desc: "Bhavishya ki duniya mein ek safar jo aapki soch badal dega. Elena Rodriguez ka masterpiece jo science aur imagination ko jodata hai.", pages: 412, lang: "English", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop" },
@@ -40,8 +48,46 @@ const Books = () => {
   const [sort, setSort] = useState("default");
   const [selected, setSelected] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
+  const [booksList, setBooksList] = useState([]);
+  const [categories, setCategories] = useState(STATIC_CATEGORIES);
 
-  let filtered = activeCategory === "All" ? books : books.filter(b => b.category === activeCategory);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/books`);
+        const data = await res.json();
+        if (data.success && data.books && data.books.length > 0) {
+          const mapped = data.books.map(b => ({
+            id: b._id,
+            title: b.title,
+            author: b.author,
+            category: b.category,
+            price: b.price,
+            oldPrice: b.oldPrice || null,
+            rating: 4.5,
+            reviews: 88,
+            badge: b.badge || null,
+            desc: b.description,
+            pages: b.pages || 300,
+            lang: b.language || 'English',
+            image: getImageUrl(b.image)
+          }));
+          setBooksList(mapped);
+          // Dynamic categories from API
+          const apiCats = ['All', ...new Set(data.books.map(b => b.category).filter(Boolean))];
+          setCategories(apiCats);
+        } else {
+          setBooksList(staticBooks);
+        }
+      } catch (err) {
+        console.error("API Fetch Error, falling back to static seed data:", err);
+        setBooksList(staticBooks);
+      }
+    };
+    fetchBooks();
+  }, []);
+
+  let filtered = activeCategory === "All" ? booksList : booksList.filter(b => b.category === activeCategory);
   if (search) filtered = filtered.filter(b => b.title.toLowerCase().includes(search.toLowerCase()) || b.author.toLowerCase().includes(search.toLowerCase()));
   if (sort === "low")    filtered = [...filtered].sort((a, b) => a.price - b.price);
   if (sort === "high")   filtered = [...filtered].sort((a, b) => b.price - a.price);
