@@ -24,13 +24,13 @@ const FixedSidebar = () => {
 
   return (
     <>
-      <div className="fixed left-0 bottom-0 -translate-y-1/2 z-[100] flex flex-col gap-2 md:gap-3">
+      <div className="fixed right-0 md:right-auto md:left-0 bottom-1/4 md:top-1/2 md:-translate-y-1/2 z-[100] flex flex-col gap-2 md:gap-3">
         {menuItems.map((item) => (
           <motion.button
             key={item.id}
             onClick={() => setActivePanel(activePanel === item.id ? null : item.id)}
-            whileHover={{ x: 8 }}
-            className={`${item.color} text-white p-2.5 pr-4 rounded-r-xl shadow-lg flex items-center justify-center transition-all relative overflow-hidden group`}
+            whileHover={{ x: -6 }}
+            className={`${item.color} text-white p-2.5 pl-4 pr-3 md:pl-2.5 md:pr-4 rounded-l-xl md:rounded-r-xl md:rounded-l-none shadow-lg flex items-center justify-center transition-all relative overflow-hidden group`}
           >
             <div className="relative z-10">{item.icon}</div>
             <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />

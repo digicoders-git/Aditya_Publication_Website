@@ -66,7 +66,7 @@ const Download = () => {
           <img 
             src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=600&auto=format&fit=crop" 
             alt="Mobile App" 
-            className="w-full h-auto drop-shadow-[0_50px_50px_rgba(0,0,0,0.2)] rounded-[3rem]"
+            className="w-full h-auto max-h-[350px] md:max-h-none object-cover drop-shadow-[0_50px_50px_rgba(0,0,0,0.2)] rounded-[3rem]"
           />
         </motion.div>
       </div>

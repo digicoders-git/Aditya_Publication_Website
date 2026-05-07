@@ -61,7 +61,7 @@ const About = () => {
 
       {/* Intro Section */}
       <section className="py-20 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div className="relative order-2 lg:order-1">
+        <div className="relative order-2 lg:order-1 pb-10 lg:pb-0">
           <div className="grid grid-cols-2 gap-4">
             <div className="pt-10">
               <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop" alt="Books" className="rounded-2xl shadow-xl w-full aspect-[3/4] object-cover" />
@@ -82,7 +82,7 @@ const About = () => {
             <span className="text-brand font-bold uppercase tracking-[0.2em] text-xs">Who We Are</span>
             <div className="h-[2px] w-10 bg-brand lg:hidden" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1f2c] font-serif leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#1a1f2c] font-serif leading-tight">
             Aditya Publication — Best Choice For Learners
           </h2>
           <p className="text-gray-500 leading-relaxed text-sm md:text-base">

@@ -52,7 +52,7 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-brand font-serif text-5xl lg:text-7xl font-extrabold leading-[0.75] mb-0 drop-shadow-sm"
+                className="text-brand font-serif text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight lg:leading-[0.75] mb-0 drop-shadow-sm"
               >
                 BIG
               </motion.h2>
@@ -60,7 +60,7 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-brand font-serif text-3xl lg:text-5xl italic font-medium -mt-2 lg:-mt-3"
+                className="text-brand font-serif text-2xl sm:text-3xl lg:text-5xl italic font-medium -mt-1 lg:-mt-3"
               >
                 Winter
               </motion.h3>
@@ -74,7 +74,7 @@ const Hero = () => {
                 >
                   SALE
                 </motion.div>
-                <div className="flex flex-col">
+                <div className="flex flex-col text-left">
                   <span className="text-gray-400 line-through text-sm lg:text-lg font-medium">₹999.00</span>
                   <span className="text-gray-900 text-lg lg:text-2xl font-bold">Only ₹499.00</span>
                 </div>
@@ -115,11 +115,11 @@ const Hero = () => {
               animate={{ scale: 1, rotate: 0 }}
               whileHover={{ scale: 1.1, rotate: 10 }}
               transition={{ delay: 1, type: "spring", stiffness: 100 }}
-              className="absolute top-0 right-0 lg:-top-10 lg:-right-10 z-30 w-24 h-24 sm:w-32 sm:h-32 lg:w-48 lg:h-48 bg-brand rounded-full flex flex-col items-center justify-center text-white border-[6px] border-white shadow-2xl"
+              className="absolute -top-4 -right-4 sm:top-0 sm:right-0 lg:-top-10 lg:-right-10 z-30 w-20 h-20 min-[400px]:w-24 min-[400px]:h-24 sm:w-32 sm:h-32 lg:w-48 lg:h-48 bg-brand rounded-full flex flex-col items-center justify-center text-white border-[4px] sm:border-[6px] border-white shadow-2xl"
             >
-              <span className="text-[8px] sm:text-[10px] lg:text-sm font-bold uppercase tracking-widest opacity-80">Up To</span>
-              <span className="text-2xl sm:text-3xl lg:text-5xl font-black">50%</span>
-              <span className="text-[7px] sm:text-[8px] lg:text-[10px] font-bold uppercase text-center px-2 leading-tight">OFF ON SELECTED ITEMS</span>
+              <span className="text-[6px] min-[400px]:text-[8px] sm:text-[10px] lg:text-sm font-bold uppercase tracking-widest opacity-80">Up To</span>
+              <span className="text-sm min-[400px]:text-xl sm:text-3xl lg:text-5xl font-black">50%</span>
+              <span className="text-[5px] min-[400px]:text-[7px] sm:text-[8px] lg:text-[10px] font-bold uppercase text-center px-1.5 leading-tight">OFF ON SELECTED ITEMS</span>
             </motion.div>
 
             {/* Book Badge */}
@@ -128,22 +128,22 @@ const Hero = () => {
               animate={{ x: 0, opacity: 1 }}
               whileHover={{ y: -10 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="absolute bottom-2 right-0 lg:-bottom-5 lg:-right-20 z-40"
+              className="absolute bottom-2 -right-4 min-[400px]:right-0 lg:-bottom-5 lg:-right-20 z-40"
             >
               <div className="relative group">
-                <div className="bg-white p-1.5 rounded-[1.5rem] shadow-2xl overflow-hidden w-28 h-28 sm:w-40 sm:h-40 lg:w-56 lg:h-56 border-4 border-white ring-1 ring-gray-100">
-                  <img src={featuredBook} alt="Featured Book" className="w-full h-full object-cover rounded-[1rem] group-hover:scale-110 transition-transform duration-500" />
+                <div className="bg-white p-1 rounded-[1rem] sm:p-1.5 sm:rounded-[1.5rem] shadow-2xl overflow-hidden w-20 h-20 min-[400px]:w-28 min-[400px]:h-28 sm:w-40 sm:h-40 lg:w-56 lg:h-56 border-2 sm:border-4 border-white ring-1 ring-gray-100">
+                  <img src={featuredBook} alt="Featured Book" className="w-full h-full object-cover rounded-[0.75rem] sm:rounded-[1rem] group-hover:scale-110 transition-transform duration-500" />
                 </div>
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-3 py-1 shadow-xl rounded-full z-50 whitespace-nowrap border border-gray-50">
-                  <span className="text-[7px] lg:text-[10px] font-black text-gray-900 uppercase tracking-tighter flex items-center gap-1">
+                <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 bg-white px-2 py-0.5 sm:px-3 sm:py-1 shadow-xl rounded-full z-50 whitespace-nowrap border border-gray-50">
+                  <span className="text-[5px] min-[400px]:text-[7px] lg:text-[10px] font-black text-gray-900 uppercase tracking-tighter flex items-center gap-1">
                     <Star size={8} className="fill-brand text-brand" /> NEW RELEASE 2026
                   </span>
                 </div>
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white p-1 rounded-xl shadow-xl border border-gray-50">
-                  <div className="bg-brand text-white px-2 py-0.5 rounded-lg font-black text-sm lg:text-xl">₹249</div>
-                  <div className="pr-1">
-                    <div className="text-[7px] font-bold text-gray-400 line-through leading-none">₹499</div>
-                    <div className="text-[7px] font-black text-brand leading-none">Limited</div>
+                <div className="absolute -bottom-1.5 sm:-bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 sm:gap-1.5 bg-white p-0.5 sm:p-1 rounded-lg sm:rounded-xl shadow-xl border border-gray-50">
+                  <div className="bg-brand text-white px-1 py-0.5 sm:px-2 sm:py-0.5 rounded-md sm:rounded-lg font-black text-[10px] sm:text-base lg:text-xl">₹249</div>
+                  <div className="pr-1 text-left">
+                    <div className="text-[6px] sm:text-[7px] font-bold text-gray-400 line-through leading-none">₹499</div>
+                    <div className="text-[6px] sm:text-[7px] font-black text-brand leading-none">Limited</div>
                   </div>
                 </div>
               </div>

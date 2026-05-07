@@ -58,9 +58,9 @@ const Contact = () => {
               {card.icon}
             </div>
             <h3 className="text-base md:text-lg font-bold text-[#1a1f2c] font-serif">{card.title}</h3>
-            <div className="space-y-0.5">
-              <p className="text-gray-600 font-medium text-sm">{card.detail1}</p>
-              <p className="text-gray-400 text-xs">{card.detail2}</p>
+            <div className="space-y-0.5 w-full">
+              <p className="text-gray-600 font-medium text-sm break-all">{card.detail1}</p>
+              <p className="text-gray-400 text-xs break-all">{card.detail2}</p>
             </div>
           </motion.div>
         ))}
