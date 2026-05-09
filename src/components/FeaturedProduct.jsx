@@ -94,7 +94,7 @@ const FeaturedProduct = () => {
         </motion.div>
       </div>
 
-      <div className="relative min-h-[700px] flex items-center">
+      <div className="relative min-h-[700px] flex items-center pb-20 md:pb-28">
         {/* Ghost Text Background */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -123,10 +123,10 @@ const FeaturedProduct = () => {
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.4 }
                 }}
-                className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center bg-white p-6 lg:p-10 rounded-[2.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.08)] border border-gray-50"
+                className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-6 lg:gap-12 items-center bg-white p-5 sm:p-6 lg:p-10 rounded-[2rem] lg:rounded-[2.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.08)] border border-gray-50"
               >
                 {/* Book Image Cover */}
-                <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl group">
+                <div className="relative aspect-[3/4] max-h-[300px] sm:max-h-none rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden shadow-2xl group">
                   <motion.img 
                     src={currentProduct.image} 
                     alt={currentProduct.title}
@@ -199,15 +199,15 @@ const FeaturedProduct = () => {
             </AnimatePresence>
 
             {/* Navigation Controls */}
-            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
+            <div className="absolute -bottom-20 md:-bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-5 md:gap-8 z-20">
               <button 
                 onClick={prevSlide}
-                className="w-16 h-16 rounded-2xl bg-white shadow-xl border border-gray-100 flex items-center justify-center text-gray-400 hover:text-brand hover:border-brand transition-all hover:scale-110 active:scale-95"
+                className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white shadow-xl border border-gray-100 flex items-center justify-center text-gray-400 hover:text-brand hover:border-brand transition-all hover:scale-110 active:scale-95"
               >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={24} />
               </button>
               
-              <div className="flex gap-3">
+              <div className="flex gap-2 md:gap-3">
                 {featuredProducts.map((_, i) => (
                   <button
                     key={i}
@@ -215,16 +215,16 @@ const FeaturedProduct = () => {
                       setDirection(i > currentIndex ? 1 : -1);
                       setCurrentIndex(i);
                     }}
-                    className={`h-3 rounded-full transition-all duration-500 ${currentIndex === i ? 'w-12 bg-brand' : 'w-3 bg-gray-200'}`}
+                    className={`h-2.5 md:h-3 rounded-full transition-all duration-500 ${currentIndex === i ? 'w-8 md:w-12 bg-brand' : 'w-2.5 md:w-3 bg-gray-200'}`}
                   />
                 ))}
               </div>
 
               <button 
                 onClick={nextSlide}
-                className="w-16 h-16 rounded-2xl bg-brand shadow-2xl shadow-brand/40 flex items-center justify-center text-white hover:bg-brand-dark transition-all hover:scale-110 active:scale-95"
+                className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-brand shadow-2xl shadow-brand/40 flex items-center justify-center text-white hover:bg-brand-dark transition-all hover:scale-110 active:scale-95"
               >
-                <ChevronRight size={32} />
+                <ChevronRight size={24} />
               </button>
             </div>
           </div>

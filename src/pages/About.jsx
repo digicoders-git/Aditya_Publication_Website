@@ -293,7 +293,7 @@ const About = () => {
               ].map((item, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className={`flex flex-col md:flex-row items-start md:items-center gap-8 ${item.side === 'right' ? 'md:flex-row-reverse' : ''}`}>
-                  <div className={`w-full md:w-1/2 flex justify-start md:justify-center ${item.side === 'left' ? 'md:justify-end md:pr-16' : 'md:justify-start md:pl-16'} pl-12 md:pl-0`}>
+                  <div className={`w-full md:w-1/2 flex justify-start md:justify-center ${item.side === 'left' ? 'md:justify-end md:pr-16' : 'md:justify-start md:pl-16'} pl-10 md:pl-0`}>
                     <div className="bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand/20 transition-all w-full max-w-md">
                       <span className="text-brand font-black text-3xl font-serif">{item.year}</span>
                       <h3 className="font-bold text-[#1a1f2c] text-xl mt-2 mb-3">{item.title}</h3>
@@ -301,7 +301,7 @@ const About = () => {
                     </div>
                   </div>
                   <div className="hidden md:flex w-10 h-10 rounded-full bg-white border-4 border-brand shadow-xl shrink-0 relative z-10" />
-                  <div className="flex md:hidden absolute left-4 w-4 h-4 rounded-full bg-brand border-2 border-white shadow-md z-10 mt-10" />
+                  <div className="absolute left-3 top-8 flex md:hidden w-4 h-4 rounded-full bg-brand border-2 border-white shadow-md z-10" />
                   <div className="md:w-1/2" />
                 </motion.div>
               ))}

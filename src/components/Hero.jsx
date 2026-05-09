@@ -6,7 +6,7 @@ import featuredBook from '../assets/hero.png';
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[700px] bg-gradient-to-br from-[#f8f9ff] via-[#ffffff] to-[#fff5f0] overflow-hidden">
+    <section className="relative w-full min-h-[500px] md:min-h-[700px] bg-gradient-to-br from-[#f8f9ff] via-[#ffffff] to-[#fff5f0] overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-20 right-[10%] w-64 h-64 bg-brand/5 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 left-[5%] w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />
@@ -28,7 +28,7 @@ const Hero = () => {
       </motion.div>
 
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.65fr_1.35fr] gap-0 items-center py-10 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.65fr_1.35fr] gap-0 items-center py-8 lg:py-24">
           
           {/* Left Content: Typography */}
           <motion.div 
@@ -93,12 +93,12 @@ const Hero = () => {
           </motion.div>
 
           {/* Right Content: Images & Badges */}
-          <div className="relative flex justify-center items-center h-[340px] sm:h-[450px] lg:h-[600px] lg:-ml-40 xl:-ml-60 mt-12 lg:mt-0">
+          <div className="relative flex justify-center items-center h-[280px] sm:h-[380px] md:h-[450px] lg:h-[600px] lg:-ml-40 xl:-ml-60 mt-8 lg:mt-0">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1 }}
-              className="relative w-full max-w-[280px] sm:max-w-md lg:max-w-2xl group"
+              className="relative w-full max-w-[220px] sm:max-w-sm md:max-w-md lg:max-w-2xl group"
             >
               <img 
                 src={heroBanner} 

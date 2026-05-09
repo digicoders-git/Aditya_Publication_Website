@@ -34,6 +34,10 @@ body {
   color: var(--text-primary);
 }
 
+/* Hide scrollbar for category pills */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* Global Dark Mode Overrides */
 .dark .bg-white { background-color: var(--bg-primary) !important; }
 .dark .bg-gray-50 { background-color: var(--bg-secondary) !important; }
