@@ -41,9 +41,9 @@ const FeaturedProduct = () => {
 
   const slideVariants = {
     enter: (direction) => ({
-      x: direction > 0 ? 500 : -500,
+      x: direction > 0 ? '100%' : '-100%',
       opacity: 0,
-      scale: 0.9
+      scale: 0.95
     }),
     center: {
       zIndex: 1,
@@ -53,9 +53,9 @@ const FeaturedProduct = () => {
     },
     exit: (direction) => ({
       zIndex: 0,
-      x: direction < 0 ? 500 : -500,
+      x: direction < 0 ? '100%' : '-100%',
       opacity: 0,
-      scale: 0.9
+      scale: 0.95
     })
   };
 
@@ -79,7 +79,7 @@ const FeaturedProduct = () => {
 
   return (
     <section className="py-24 bg-white overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-4 text-center mb-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 text-center mb-16 md:mb-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ const FeaturedProduct = () => {
         </motion.div>
       </div>
 
-      <div className="relative min-h-[700px] flex items-center pb-20 md:pb-28">
+      <div className="relative min-h-[700px] flex items-center pb-20 md:pb-28 overflow-hidden">
         {/* Ghost Text Background */}
         <AnimatePresence mode="wait">
           <motion.div

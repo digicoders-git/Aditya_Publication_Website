@@ -48,8 +48,8 @@ const FixedSidebar = () => {
             />
 
             <motion.div
-              initial={{ x: -380, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -380, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              initial={{ x: '-100%', opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: '-100%', opacity: 0 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 220 }}
               className="fixed left-0 top-0 bottom-0 w-[85vw] sm:w-[340px] bg-white z-[120] shadow-2xl p-5 sm:p-8 flex flex-col overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-8">
