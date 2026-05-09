@@ -66,7 +66,7 @@ const Recommended = () => {
           </div>
         </div>
 
-        <div className="overflow-visible sm:overflow-hidden">
+        <div className="overflow-hidden">
           <motion.div
             className="flex gap-4 md:gap-6"
             animate={{ x: `calc(-${current} * (100% / ${visible} + ${visible > 2 ? '24px' : '16px'}))` }}

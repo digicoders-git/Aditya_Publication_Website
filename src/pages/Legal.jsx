@@ -10,7 +10,7 @@ const LegalLayout = ({ title, icon, children }) => (
     className="bg-white"
   >
     {/* Hero Section */}
-    <section className="relative h-[300px] bg-[#2a2d6e] flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-[240px] md:h-[300px] bg-[#2a2d6e] flex flex-col items-center justify-center overflow-hidden px-4">
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1500&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay" />
       </div>
@@ -18,7 +18,7 @@ const LegalLayout = ({ title, icon, children }) => (
       <motion.h1 
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="text-4xl md:text-6xl font-bold text-white mb-6 relative z-10 font-serif"
+        className="text-3xl md:text-5xl font-bold text-white mb-6 relative z-10 font-serif text-center"
       >
         {title}
       </motion.h1>
