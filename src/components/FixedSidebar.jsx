@@ -24,7 +24,7 @@ const FixedSidebar = () => {
 
   return (
     <>
-      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-2 md:gap-3">
+      <div className="fixed left-0 bottom-0 -translate-y-1/2 z-[100] flex flex-col gap-2 md:gap-3">
         {menuItems.map((item) => (
           <motion.button
             key={item.id}
@@ -132,26 +132,26 @@ const FixedSidebar = () => {
                   </p>
 
                   <div className="space-y-3">
-                    <a href="tel:+919876543210"
+                    <a href="tel:+919307318451"
                       className="flex items-center gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-brand/5 group transition-all">
                       <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-all shrink-0">
                         <Phone size={20} />
                       </div>
                       <div>
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Call Us</p>
-                        <p className="font-bold text-gray-900 text-sm">+91 98765 43210</p>
+                        <p className="font-bold text-gray-900 text-sm">+91 93073 18451</p>
                         <p className="text-gray-400 text-xs">Mon–Sat, 9AM–6PM</p>
                       </div>
                     </a>
 
-                    <a href="mailto:hello@adityaPublication.com"
+                    <a href="mailto:aditya.pktiwari@gmail.com"
                       className="flex items-center gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-brand/5 group transition-all">
                       <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center text-brand shadow-sm group-hover:bg-brand group-hover:text-white transition-all shrink-0">
                         <Mail size={20} />
                       </div>
                       <div>
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Us</p>
-                        <p className="font-bold text-gray-900 text-sm">hello@adityaPublication.com</p>
+                        <p className="font-bold text-gray-900 text-sm">aditya.pktiwari@gmail.com</p>
                         <p className="text-gray-400 text-xs">Reply within 24 hours</p>
                       </div>
                     </a>

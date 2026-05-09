@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ChevronDown, BookOpen, Menu, X } from 'lucide-react';
+import { Search, ChevronDown, Menu, X } from 'lucide-react';
+import logo from '../assets/logo.jpg';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -21,12 +22,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16 md:h-20 gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 shrink-0 group">
-            <div className="bg-brand/10 p-2 rounded-xl group-hover:bg-brand/20 transition-colors">
-              <BookOpen className="text-brand w-6 h-6 md:w-8 md:h-8" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-gray-900 leading-none">Aditya</span>
+          <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
+            <img src={logo} alt="Aditya Publication" className="h-10 md:h-12 w-auto object-contain" />
+            <div className="flex flex-col leading-none">
+              <span className="text-lg md:text-xl font-bold text-gray-900">Aditya</span>
               <span className="text-xs md:text-sm font-medium text-brand tracking-wider uppercase">Publication</span>
             </div>
           </Link>

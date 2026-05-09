@@ -43,9 +43,9 @@ const Contact = () => {
       {/* Contact Cards — overlap hero on desktop, normal flow on mobile */}
       <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-6 md:-mt-14 relative z-20 mb-4">
         {[
-          { icon: <Phone size={26} />, title: "Phone Number", detail1: "+91 98765 43210", detail2: "+91 87654 32109" },
-          { icon: <Mail size={26} />, title: "Email Address", detail1: "hello@adityaPublication.com", detail2: "support@adityaPublication.com", highlight: true },
-          { icon: <MapPin size={26} />, title: "Office Location", detail1: "Sector 15, Rohini", detail2: "New Delhi, India - 110085" },
+          { icon: <Phone size={26} />, title: "Phone Number", detail1: "+91 93073 18451", detail2: "Available for Call / WhatsApp" },
+          { icon: <Mail size={26} />, title: "Email Address", detail1: "aditya.pktiwari@gmail.com", detail2: "gio.aditya.pktiwari@gmail.com", highlight: true },
+          { icon: <MapPin size={26} />, title: "Office Location", detail1: "'ADITYA HOUSE', Devnagar", detail2: "Pratishthanpuri (Jhusi), Prayagraj, UP - 211019" },
         ].map((card, i) => (
           <motion.div key={i} whileHover={{ y: -6 }}
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
@@ -153,15 +153,15 @@ const Contact = () => {
 
       {/* Map Section */}
       <section className="px-4 pb-12">
-        <div className="max-w-7xl mx-auto h-[220px] md:h-[380px] rounded-2xl overflow-hidden shadow-lg relative border-4 border-white group">
-          <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1500&auto=format&fit=crop"
-            alt="Office" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
-          <div className="absolute inset-0 bg-[#2a2d6e]/40 group-hover:bg-transparent transition-all duration-1000" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white px-6 py-5 md:p-10 bg-[#1a1f2c]/80 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl w-[85%] sm:w-auto">
-            <MapPin size={32} className="mx-auto mb-2 text-brand" />
-            <h3 className="text-lg md:text-2xl font-bold mb-1 font-serif">Visit Our Head Office</h3>
-            <p className="opacity-80 text-xs md:text-sm">Sector 15, Rohini, New Delhi - 110085</p>
-          </div>
+        <div className="max-w-7xl mx-auto h-[300px] md:h-[450px] rounded-2xl overflow-hidden shadow-lg relative border-4 border-white bg-gray-100">
+          <iframe
+            title="Aditya Publication Location"
+            src="https://maps.google.com/maps?q=Aditya%20Publication%20Jhusi%20Prayagraj%20211019&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            className="w-full h-full border-0 opacity-90 hover:opacity-100 transition-all duration-500 grayscale-[30%] hover:grayscale-0"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </section>
 

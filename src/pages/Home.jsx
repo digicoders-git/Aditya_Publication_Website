@@ -250,9 +250,9 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {[
-              { icon: <Phone size={28} />, title: "Call Us", detail: "+91 98765 43210", sub: "Mon–Sat, 9AM–6PM" },
-              { icon: <Mail size={28} />, title: "Email Us", detail: "hello@adityaPublication.com", sub: "Reply within 24 hours", highlight: true },
-              { icon: <MapPin size={28} />, title: "Visit Us", detail: "Sector 15, Rohini", sub: "New Delhi – 110085" },
+              { icon: <Phone size={28} />, title: "Call Us", detail: "+91 93073 18451", sub: "Mon–Sat, 9AM–6PM" },
+              { icon: <Mail size={28} />, title: "Email Us", detail: "aditya.pktiwari@gmail.com", sub: "Reply within 24 hours", highlight: true },
+              { icon: <MapPin size={28} />, title: "Visit Us", detail: "Aditya House, Jhusi", sub: "Prayagraj, UP - 211019" },
             ].map((card, i) => (
               <motion.div key={i} custom={i} variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} whileHover={{ y: -6 }}
                 className={`p-7 rounded-2xl text-center flex flex-col items-center gap-3 border transition-all ${card.highlight ? 'bg-brand text-white border-brand shadow-xl shadow-brand/20' : 'bg-white border-gray-100 shadow-sm hover:shadow-lg'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen } from 'lucide-react';
+import logo from '../assets/logo.jpg';
 
 const LoadingScreen = () => {
   return (
@@ -18,18 +18,10 @@ const LoadingScreen = () => {
       >
         <div className="relative mb-6">
           <motion.div
-            animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [0, 10, -10, 0]
-            }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 2,
-              ease: "easeInOut" 
-            }}
-            className="text-brand"
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
-            <BookOpen size={80} strokeWidth={1.5} />
+            <img src={logo} alt="Aditya Publication" className="w-24 h-24 object-contain drop-shadow-xl" />
           </motion.div>
           <motion.div 
             initial={{ scale: 0 }}
