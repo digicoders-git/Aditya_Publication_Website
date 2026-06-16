@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const SocialIcon = ({ d, label }) => (
   <a href="#" className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-all shadow-sm border border-gray-100" aria-label={label}>
@@ -12,6 +14,43 @@ const SocialIcon = ({ d, label }) => (
 );
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      setErrorMsg('Please fill in all required fields (Name, Email, and Message).');
+      setStatus('error');
+      return;
+    }
+    setStatus('loading');
+    setErrorMsg('');
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setErrorMsg(data.message || 'Failed to submit message.');
+        setStatus('error');
+      }
+    } catch (err) {
+      setErrorMsg('Could not connect to server. Please try again later.');
+      setStatus('error');
+    }
+  };
+
   const socialLinks = [
     { label: 'Facebook', d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" },
     { label: 'Twitter', d: "M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" },
@@ -116,38 +155,114 @@ const Contact = () => {
         {/* Contact Form */}
         <motion.div initial={{ x: 40, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }}
           className="bg-white p-5 md:p-8 rounded-2xl shadow-lg border border-gray-100">
-          <form className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Your Name</label>
-                <input type="text" placeholder="Enter your name"
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700" />
+          
+          {status === 'success' ? (
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }} 
+              animate={{ scale: 1, opacity: 1 }} 
+              className="py-16 text-center flex flex-col items-center gap-6"
+            >
+              <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 relative">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+                  className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-emerald-500/20"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-8 h-8">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                </motion.div>
               </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Email Address</label>
-                <input type="email" placeholder="Enter your email"
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700" />
+              <div>
+                <h3 className="text-2xl font-bold text-[#1a1f2c] font-serif mb-2">Message Sent!</h3>
+                <p className="text-gray-500 text-sm max-w-sm">
+                  Your enquiry has been successfully logged. Our administration team will review and get back to you shortly.
+                </p>
               </div>
-            </div>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="mt-2 px-6 py-2.5 bg-brand text-white font-bold rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-brand/20 hover:bg-brand-dark transition-all cursor-pointer"
+              >
+                Submit Another Inquiry
+              </button>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Your Name *</label>
+                  <input 
+                    type="text" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required
+                    disabled={status === 'loading'}
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700" 
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Email Address *</label>
+                  <input 
+                    type="email" 
+                    name="email" 
+                    value={formData.email} 
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    required
+                    disabled={status === 'loading'}
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700" 
+                  />
+                </div>
+              </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Phone Number</label>
-              <input type="text" placeholder="Enter phone number"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700" />
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Phone Number</label>
+                <input 
+                  type="text" 
+                  name="phone" 
+                  value={formData.phone} 
+                  onChange={handleChange}
+                  placeholder="Enter phone number"
+                  disabled={status === 'loading'}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700" 
+                />
+              </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Message</label>
-              <textarea rows="5" placeholder="Write your message here..."
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700 resize-none">
-              </textarea>
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Message *</label>
+                <textarea 
+                  rows="5" 
+                  name="message" 
+                  value={formData.message} 
+                  onChange={handleChange}
+                  placeholder="Write your message here..."
+                  required
+                  disabled={status === 'loading'}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand focus:bg-white transition-all text-gray-700 resize-none"
+                />
+              </div>
 
-            <button className="w-full bg-brand text-white py-3.5 rounded-xl font-bold shadow-lg shadow-brand/30 hover:bg-brand-dark transition-all flex items-center justify-center gap-2 text-sm group">
-              Send Message
-              <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </button>
-          </form>
+              {status === 'error' && (
+                <div className="p-3 bg-rose-50 border border-rose-100 rounded-xl text-rose-600 text-xs font-bold">
+                  {errorMsg}
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="w-full bg-brand text-white py-3.5 rounded-xl font-bold shadow-lg shadow-brand/30 hover:bg-brand-dark disabled:bg-gray-400 transition-all flex items-center justify-center gap-2 text-sm group cursor-pointer"
+              >
+                {status === 'loading' ? 'Sending...' : 'Send Message'}
+                {status !== 'loading' && (
+                  <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                )}
+              </button>
+            </form>
+          )}
         </motion.div>
       </section>
 

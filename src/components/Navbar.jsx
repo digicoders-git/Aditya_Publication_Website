@@ -1,12 +1,83 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import logo from '../assets/logo.jpg';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const STATIC_CATEGORIES = ["All", "Biography", "Horror", "Thriller", "Adventure", "Sci-Fi", "Business", "Academic"];
+
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [categories, setCategories] = useState(STATIC_CATEGORIES);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/books/categories`);
+        const data = await res.json();
+        if (data.success && data.categories && data.categories.length > 0) {
+          setCategories(["All", ...data.categories]);
+        }
+      } catch (err) {
+        console.error("Error fetching categories for navbar:", err);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setCategoryMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  // Sync selectedCategory and searchQuery from URL if they change externally (e.g. user navigates)
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const catParam = searchParams.get('category') || 'All';
+    const searchParam = searchParams.get('search') || '';
+    setSelectedCategory(catParam);
+    setSearchQuery(searchParam);
+  }, [location.search]);
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (selectedCategory && selectedCategory !== 'All') {
+      params.set('category', selectedCategory);
+    }
+    if (searchQuery.trim()) {
+      params.set('search', searchQuery.trim());
+    }
+    navigate(`/books-publication-list?${params.toString()}`);
+  };
+
+  const handleCategorySelect = (cat) => {
+    setSelectedCategory(cat);
+    setCategoryMenuOpen(false);
+    const params = new URLSearchParams();
+    if (cat && cat !== 'All') {
+      params.set('category', cat);
+    }
+    if (searchQuery.trim()) {
+      params.set('search', searchQuery.trim());
+    }
+    navigate(`/books-publication-list?${params.toString()}`);
+  };
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -33,13 +104,60 @@ const Navbar = () => {
           {/* Search Bar — hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-2xl mx-4">
             <div className="relative w-full flex items-center bg-gray-50 rounded-full border border-gray-200 focus-within:border-brand transition-all">
-              <div className="flex items-center px-4 border-r border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors h-11 rounded-l-full shrink-0 whitespace-nowrap">
-                <span className="text-sm font-medium text-gray-600">Category</span>
-                <ChevronDown className="w-4 h-4 ml-2 text-gray-400" />
+              {/* Category Dropdown */}
+              <div ref={dropdownRef} className="relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setCategoryMenuOpen(!categoryMenuOpen)}
+                  className="flex items-center px-4 border-r border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors h-11 rounded-l-full shrink-0 whitespace-nowrap focus:outline-none"
+                >
+                  <span className="text-sm font-medium text-gray-600 truncate max-w-[120px]">
+                    {selectedCategory}
+                  </span>
+                  <ChevronDown className="w-4 h-4 ml-2 text-gray-400 shrink-0" />
+                </button>
+
+                <AnimatePresence>
+                  {categoryMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl py-2 z-50 max-h-60 overflow-y-auto"
+                    >
+                      {categories.map((cat) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => handleCategorySelect(cat)}
+                          className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                            selectedCategory === cat ? 'text-brand font-bold bg-brand/5' : 'text-gray-700'
+                          }`}
+                        >
+                          {cat}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <input type="text" placeholder="Search Books Here"
-                className="w-full bg-transparent px-4 py-2 text-sm focus:outline-none text-gray-700" />
-              <button className="p-3 mr-1 text-gray-400 hover:text-brand transition-colors">
+
+              {/* Search input field */}
+              <input
+                type="text"
+                placeholder="Search Books Here"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleSearch();
+                }}
+                className="w-full bg-transparent px-4 py-2 text-sm focus:outline-none text-gray-700"
+              />
+              <button
+                type="button"
+                onClick={handleSearch}
+                className="p-3 mr-1 text-gray-400 hover:text-brand transition-colors focus:outline-none cursor-pointer"
+              >
                 <Search className="w-5 h-5" />
               </button>
             </div>
@@ -48,9 +166,9 @@ const Navbar = () => {
           {/* Right side */}
           <div className="flex items-center gap-2">
             {/* Mobile search icon */}
-            <button className="md:hidden p-2 text-gray-500 hover:text-brand transition-colors">
+            <Link to="/books-publication-list" className="md:hidden p-2 text-gray-500 hover:text-brand transition-colors">
               <Search size={20} />
-            </button>
+            </Link>
             {/* Hamburger */}
             <button onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-2 text-gray-700 hover:text-brand transition-colors">

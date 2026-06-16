@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, BookOpen, Star, TrendingUp, Award, ChevronRight, BookMarked, Zap, Globe, Compass, GraduationCap, X, Tag, SlidersHorizontal } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
@@ -43,8 +43,30 @@ const Stars = ({ rating, size = 11 }) => (
 );
 
 const Books = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [search, setSearch] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeCategory = searchParams.get('category') || 'All';
+  const search = searchParams.get('search') || '';
+
+  const setActiveCategory = (cat) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (cat && cat !== 'All') {
+      newParams.set('category', cat);
+    } else {
+      newParams.delete('category');
+    }
+    setSearchParams(newParams);
+  };
+
+  const setSearch = (query) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (query) {
+      newParams.set('search', query);
+    } else {
+      newParams.delete('search');
+    }
+    setSearchParams(newParams);
+  };
+
   const [sort, setSort] = useState("default");
   const [selected, setSelected] = useState(null);
   const [showFilter, setShowFilter] = useState(false);

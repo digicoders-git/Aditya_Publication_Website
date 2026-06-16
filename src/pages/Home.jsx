@@ -17,14 +17,6 @@ const getImageUrl = (img) => {
   return `${API_BASE_URL}/${img}`;
 };
 
-const staticTopBooks = [
-  { title: "Seconds [PART 1]", author: "Janet Scott", price: 1699, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.5, img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop" },
-  { title: "Beyond The Horizon", author: "Elena Rodriguez", price: 4199, badge: "Top Rated", badgeColor: "bg-purple-500", rating: 4.8, img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&auto=format&fit=crop" },
-  { title: "REWORK", author: "Jason Fried", price: 2899, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.9, img: "https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=400&auto=format&fit=crop" },
-  { title: "Dark Whispers", author: "Arjun Kapoor", price: 1899, badge: "Trending", badgeColor: "bg-rose-500", rating: 4.4, img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400&auto=format&fit=crop" },
-  { title: "Quantitative Aptitude", author: "R.S. Aggarwal", price: 3499, badge: "Bestseller", badgeColor: "bg-amber-500", rating: 4.8, img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=400&auto=format&fit=crop" },
-];
-
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: 'easeOut' } })
@@ -43,24 +35,22 @@ const Home = () => {
   useEffect(() => {
     const fetchTopBooks = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/books`);
+        const res = await fetch(`${API_BASE_URL}/api/books/section/top-books`);
         const data = await res.json();
         if (data.success && data.books && data.books.length > 0) {
-          const mapped = data.books.slice(0, 5).map(b => ({
+          const mapped = data.books.map(b => ({
             title: b.title,
             author: b.author,
             price: b.price,
-            badge: b.badge || "Trending",
-            badgeColor: b.badge === "Bestseller" ? "bg-amber-500" : b.badge === "New" ? "bg-green-500" : b.badge === "Top Rated" ? "bg-purple-500" : "bg-rose-500",
+            badge: b.badge || 'Trending',
+            badgeColor: b.badge === 'Bestseller' ? 'bg-amber-500' : b.badge === 'New' ? 'bg-green-500' : b.badge === 'Top Rated' ? 'bg-purple-500' : 'bg-rose-500',
             rating: 4.7,
             img: getImageUrl(b.image)
           }));
           setTopBooks(mapped);
-        } else {
-          setTopBooks(staticTopBooks);
         }
       } catch (err) {
-        setTopBooks(staticTopBooks);
+        console.error('Failed to load top books:', err);
       }
     };
     fetchTopBooks();
@@ -157,7 +147,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── Books Teaser ── */}
+      {/* ── Top Books This Season ── */}
+      {topBooks.length > 0 && (
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-end justify-between mb-10">
@@ -198,6 +189,7 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+      )}
 
       <LatestNews />
 

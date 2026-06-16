@@ -18,8 +18,8 @@ const FixedSidebar = () => {
   }, [fontSize]);
 
   const menuItems = [
-    { id: 'settings', icon: <Settings size={18} />, color: 'bg-[#FF7A1A]' },
-    { id: 'support',  icon: <Headset size={18} />,  color: 'bg-[#00B4D8]' },
+    // { id: 'settings', icon: <Settings size={18} />, color: 'bg-[#FF7A1A]' },
+    // { id: 'support',  icon: <Headset size={18} />,  color: 'bg-[#00B4D8]' },
   ];
 
   return (

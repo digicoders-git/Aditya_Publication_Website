@@ -1,34 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+const staticNews = [
+  {
+    id: 1,
+    title: "You Will Never Believe These Bizarre.",
+    excerpt: "Sometimes I even ask myself if all this has really happened, if its pictures dwell.",
+    date: "Sep 6, 2022",
+    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    id: 2,
+    title: "You Should Experience Library At Least.",
+    excerpt: "Sometimes I even ask myself if all this has really happened, if its pictures dwell.",
+    date: "Sep 2, 2022",
+    image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    id: 3,
+    title: "Ten Factors That Affect Book Library’s.",
+    excerpt: "Sometimes I even ask myself if all this has really happened, if its pictures dwell.",
+    date: "Sep 6, 2022",
+    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=400&auto=format&fit=crop"
+  },
+  {
+    id: 4,
+    title: "You Will Never Believe These Bizarre.",
+    excerpt: "Sometimes I even ask myself if all this has really happened, if its pictures dwell.",
+    date: "Sep 6, 2022",
+    image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400&auto=format&fit=crop"
+  }
+];
+
 const LatestNews = () => {
-  const news = [
-    {
-      id: 1,
-      title: "You Will Never Believe These Bizarre.",
-      date: "Sep 6, 2022",
-      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop"
-    },
-    {
-      id: 2,
-      title: "You Should Experience Library At Least.",
-      date: "Sep 2, 2022",
-      image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Ten Factors That Affect Book Library’s.",
-      date: "Sep 6, 2022",
-      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=400&auto=format&fit=crop"
-    },
-    {
-      id: 4,
-      title: "You Will Never Believe These Bizarre.",
-      date: "Sep 6, 2022",
-      image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=400&auto=format&fit=crop"
-    }
-  ];
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/news`);
+        const data = await res.json();
+        if (data.success && data.news?.length > 0) {
+          // Map backend news structure to UI attributes
+          const mapped = data.news.map(item => ({
+            id: item._id,
+            title: item.title,
+            excerpt: item.excerpt,
+            date: item.createdAt ? new Date(item.createdAt).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric'
+            }) : 'Recent',
+            image: item.image || 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop'
+          }));
+          setNews(mapped);
+        } else {
+          setNews(staticNews);
+        }
+      } catch (err) {
+        setNews(staticNews);
+      }
+    };
+    fetchNews();
+  }, []);
 
   return (
     <section className="py-24 bg-[#fcfcfd]">
@@ -42,7 +79,7 @@ const LatestNews = () => {
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {news.map((item, i) => (
           <motion.div 
-            key={i}
+            key={item.id || i}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.1 }}
@@ -52,11 +89,11 @@ const LatestNews = () => {
               <img src={item.image} alt="news" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
             </div>
             <div className="p-8">
-              <h3 className="font-bold text-gray-900 mb-4 group-hover:text-brand transition-colors line-clamp-2 min-h-[3.5rem]">
+              <h3 className="font-bold text-gray-900 mb-4 group-hover:text-brand transition-colors line-clamp-2 min-h-[3.5rem]" title={item.title}>
                 {item.title}
               </h3>
               <p className="text-gray-400 text-sm mb-6 line-clamp-2">
-                Sometimes I even ask myself if all this has really happened, if its pictures dwell.
+                {item.excerpt}
               </p>
               <div className="flex items-center gap-2 text-brand font-bold text-sm border-t border-gray-50 pt-6">
                 <Calendar size={16} /> {item.date}

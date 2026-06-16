@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const books = [
-  { id: 1, title: "Missadventure", price: 1499, oldPrice: 2099, image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=400&auto=format&fit=crop" },
-  { id: 2, title: "Pushing Clouds", price: 2499, oldPrice: 4199, image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop" },
-  { id: 3, title: "REWORK", price: 4199, oldPrice: null, image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=400&auto=format&fit=crop" },
-  { id: 4, title: "Battle Drive", price: 1699, oldPrice: 2099, image: "https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=400&auto=format&fit=crop" },
-  { id: 5, title: "The Silent Hour", price: 1299, oldPrice: 1899, image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop" },
-  { id: 6, title: "Deep Waters", price: 1899, oldPrice: 2499, image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop" },
-  { id: 7, title: "Beyond Stars", price: 3299, oldPrice: null, image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=400&auto=format&fit=crop" },
-];
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+const getImage = (img) => {
+  if (!img) return 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=400&auto=format&fit=crop';
+  if (img.startsWith('http')) return img;
+  return `${API_BASE_URL}/${img}`;
+};
 
 const Recommended = () => {
+  const [books, setBooks] = useState([]);
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(4);
 
   useEffect(() => {
+    const fetchRecommended = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/books/section/recommended`);
+        const data = await res.json();
+        if (data.success && data.books && data.books.length > 0) {
+          setBooks(data.books);
+        }
+      } catch (err) {
+        console.error('Failed to load recommended books:', err);
+      }
+    };
+    fetchRecommended();
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) setVisible(1.5); // Partial peek for mobile
+      if (window.innerWidth < 640) setVisible(1.5);
       else if (window.innerWidth < 1024) setVisible(2);
       else setVisible(4);
     };
@@ -27,18 +41,11 @@ const Recommended = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const total = books.length;
-  const maxIndex = total - Math.floor(visible);
+  if (books.length === 0) return null;
 
-  const next = () => {
-    if (current >= maxIndex) return;
-    setCurrent((p) => Math.min(p + 1, maxIndex));
-  };
-
-  const prev = () => {
-    if (current <= 0) return;
-    setCurrent((p) => Math.max(p - 1, 0));
-  };
+  const maxIndex = books.length - Math.floor(visible);
+  const next = () => setCurrent((p) => Math.min(p + 1, maxIndex));
+  const prev = () => setCurrent((p) => Math.max(p - 1, 0));
 
   return (
     <section className="py-12 bg-[#fcfcfd]">
@@ -74,13 +81,13 @@ const Recommended = () => {
           >
             {books.map((book) => (
               <div
-                key={book.id}
+                key={book._id}
                 className="flex-shrink-0 group cursor-pointer"
                 style={{ width: `calc((100% - ${(Math.ceil(visible) - 1) * (visible > 2 ? 24 : 16)}px) / ${visible})` }}
               >
                 <div className="relative w-full aspect-[2/3] sm:h-72 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all mb-3">
                   <img
-                    src={book.image}
+                    src={getImage(book.image)}
                     alt={book.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
